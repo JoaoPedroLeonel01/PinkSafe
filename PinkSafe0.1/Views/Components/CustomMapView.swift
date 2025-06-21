@@ -1,4 +1,3 @@
-// Views/Components/CustomMapView.swift
 import SwiftUI
 import MapKit
 
@@ -50,7 +49,7 @@ struct CustomMapView: UIViewRepresentable {
             
             view?.canShowCallout = true
             view?.glyphImage = UIImage(systemName: locationAnnotation.category.icon)
-            // MODIFICADO: Usa a cor "principal" para todos os pinos, conforme solicitado
+            // Usa a cor "principal" para todos os pinos
             view?.markerTintColor = UIColor(Color("principal"))
             
             return view

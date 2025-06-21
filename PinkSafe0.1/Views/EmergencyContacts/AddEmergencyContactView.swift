@@ -21,6 +21,9 @@ struct AddEmergencyContactView: View {
                     TextField("Nome", text: $name)
                     TextField("Telefone", text: $phone)
                         .keyboardType(.phonePad)
+                        .onChange(of: phone) {
+                            phone = format(phone: phone)
+                        }
                     TextField("Relacionamento (ex: Mãe, Irmã)", text: $relationship)
                 }
                 
@@ -56,15 +59,46 @@ struct AddEmergencyContactView: View {
     }
     
     private func saveContact() {
+        let digitsOnly = phone.filter { "0"..."9" ~= $0 }
+        
         let _ = EmergencyContact(
             name: name,
-            phone: phone,
+            phone: digitsOnly, // Salva só os números
             relationship: relationship
         )
         showingAlert = true
+    }
+
+    private func format(phone: String) -> String {
+        let digitsOnly = phone.filter { "0"..."9" ~= $0 }
+        let truncatedDigits = String(digitsOnly.prefix(11))
+        var formattedString = ""
+        var remainingDigits = truncatedDigits
+        
+        if remainingDigits.count > 0 {
+            formattedString += "("
+            let ddd = String(remainingDigits.prefix(2))
+            formattedString += ddd
+            remainingDigits = String(remainingDigits.dropFirst(2))
+        }
+        
+        if remainingDigits.count > 0 {
+            formattedString += ") "
+            let firstPart = String(remainingDigits.prefix(5))
+            formattedString += firstPart
+            remainingDigits = String(remainingDigits.dropFirst(5))
+        }
+        
+        if remainingDigits.count > 0 {
+            formattedString += "-"
+            let secondPart = String(remainingDigits.prefix(4))
+            formattedString += secondPart
+        }
+        
+        return formattedString
     }
 }
 
 #Preview {
     AddEmergencyContactView()
-} 
+}

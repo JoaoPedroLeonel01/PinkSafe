@@ -79,15 +79,16 @@ struct MapaView: View {
     
     private var navigationButton: some View {
         NavigationLink(destination: PsychologistConsultationView()) {
-            HStack {
+            HStack(spacing: 12) {
                 Image(systemName: "heart.text.square.fill")
                     .font(.title2)
+                
                 Text("Agende sua Consulta Psicológica Gratuita")
                     .fontWeight(.bold)
-                    .font(.title3)
+                    .font(.callout)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 18)
+            .frame(height: 65)
             .background(LinearGradient(colors: [Color("principal").opacity(0.8), Color("principal")], startPoint: .top, endPoint: .bottom))
             .foregroundColor(.white)
             .cornerRadius(15)

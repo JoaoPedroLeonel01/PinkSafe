@@ -1,9 +1,7 @@
-// ViewModels/LocationSearchService.swift
 import SwiftUI
 import MapKit
 import CoreLocation
 
-// Anotação customizada para o mapa, que carrega a categoria do local.
 class LocationAnnotation: MKPointAnnotation {
     let category: LocationCategory
 
@@ -16,7 +14,7 @@ class LocationAnnotation: MKPointAnnotation {
 }
 
 class LocationSearchService: NSObject, ObservableObject, CLLocationManagerDelegate {
-    // Mantém todos os locais em uma lista privada e publica apenas a lista filtrada.
+
     private var allFixedLocations: [SupportLocation] = []
     @Published var filteredSupportLocations: [SupportLocation] = []
     
@@ -30,10 +28,10 @@ class LocationSearchService: NSObject, ObservableObject, CLLocationManagerDelega
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         loadFixedLocations()
-        filterLocations(by: .todos) // Exibe todos os locais por padrão ao iniciar
+        filterLocations(by: .todos)
     }
     
-    // Função que aplica o filtro na lista de locais.
+
     func filterLocations(by category: LocationCategory) {
         if category == .todos {
             filteredSupportLocations = allFixedLocations
@@ -42,12 +40,12 @@ class LocationSearchService: NSObject, ObservableObject, CLLocationManagerDelega
         }
     }
     
-    // Carrega os dados do nosso novo arquivo de dados.
+
     func loadFixedLocations() {
         self.allFixedLocations = LocationsDatabase.allLocations
     }
     
-    // Funções de localização do usuário
+
     func requestLocationAuthorization() {
         locationManager.requestWhenInUseAuthorization()
     }

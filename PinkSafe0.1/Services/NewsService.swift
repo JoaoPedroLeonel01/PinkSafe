@@ -7,7 +7,8 @@ struct NewsAPIResponse: Codable {
 }
 
 struct Article: Codable, Identifiable {
-    let id = UUID() // Adicionado para conformidade com Identifiable
+    let id = UUID()
+
     let source: Source
     let author: String?
     let title: String
@@ -16,6 +17,10 @@ struct Article: Codable, Identifiable {
     let urlToImage: String?
     let publishedAt: String
     let content: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case source, author, title, description, url, urlToImage, publishedAt, content
+    }
 }
 
 struct Source: Codable {
@@ -23,8 +28,9 @@ struct Source: Codable {
     let name: String
 }
 
+@MainActor
 class NewsService: ObservableObject {
-    private let apiKey = "c9a20d5199494695963e0e397381469e" // Sua chave de API
+    private let apiKey = "c9a20d5199494695963e0e397381469e"
     private let baseUrl = "https://newsapi.org/v2/everything"
     
     @Published var news: [Article] = []
@@ -43,7 +49,7 @@ class NewsService: ObservableObject {
         }
         
         var request = URLRequest(url: url)
-        request.cachePolicy = .reloadIgnoringLocalCacheData // Always fetch latest data
+        request.cachePolicy = .reloadIgnoringLocalCacheData
 
         let (data, response) = try await URLSession.shared.data(for: request)
         
@@ -52,11 +58,9 @@ class NewsService: ObservableObject {
         }
         
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601 // Para decodificar datas no formato ISO 8601
-        
+        decoder.dateDecodingStrategy = .iso8601
+
         let apiResponse = try decoder.decode(NewsAPIResponse.self, from: data)
-        DispatchQueue.main.async {
-            self.news = apiResponse.articles
-        }
+        self.news = apiResponse.articles
     }
-} 
+}

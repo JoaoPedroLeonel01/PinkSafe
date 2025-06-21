@@ -71,9 +71,12 @@ struct MapaView: View {
                 .multilineTextAlignment(.center).padding().background(Color.white.opacity(0.8))
                 .cornerRadius(10).foregroundColor(.red).padding(.bottom)
         } else if !locationSearchService.nearbySupportLocations.isEmpty {
+            // Removendo a exibição dos resultados de busca de localização
+            /*
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(locationSearchService.nearbySupportLocations, id: \.self) { item in
+                    ForEach(locationSearchService.nearbySupportLocations, id: \.self) {
+                        item in
                         VStack(alignment: .leading) {
                             Text(item.name ?? "Lugar Desconhecido").font(.headline)
                             Text(item.placemark.title ?? "Sem endereço").font(.subheadline)
@@ -83,6 +86,7 @@ struct MapaView: View {
                 }
                 .padding(.horizontal)
             }
+            */
         }
     }
     
@@ -90,20 +94,23 @@ struct MapaView: View {
     private var navigationButton: some View {
         NavigationLink(destination: PsychologistConsultationView()) {
             HStack {
-                Image(systemName: "hand.raised.fill")
-                Text("Preciso de Suporte Emocional !")
-                    .fontWeight(.semibold)
+                Image(systemName: "heart.text.square.fill")
+                    .font(.title2)
+                Text("Agende sua Consulta Psicológica Gratuita")
+                    .fontWeight(.bold)
+                    .font(.title3)
             }
             .frame(maxWidth: .infinity)
-            .padding()
+            .padding(.vertical, 18)
             .background(
-                LinearGradient(colors: [Color.purple.opacity(0.8), Color.purple], startPoint: .top, endPoint: .bottom)
+                LinearGradient(colors: [Color.principal.opacity(0.8), Color.principal], startPoint: .top, endPoint: .bottom)
             )
             .foregroundColor(.white)
             .cornerRadius(15)
             .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 3)
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.bottom)
     }
 }
 

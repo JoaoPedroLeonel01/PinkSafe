@@ -26,6 +26,8 @@ struct CustomMapView: UIViewRepresentable {
         
         uiView.addAnnotations(locationSearchService.fixedSupportLocations)
         
+        // Removendo a adição de anotações de locais próximos encontrados pela busca
+        /*
         let nearbyAnnotations = locationSearchService.nearbySupportLocations.map { mapItem -> MKPointAnnotation in
             let annotation = MKPointAnnotation()
             annotation.coordinate = mapItem.placemark.coordinate
@@ -34,6 +36,7 @@ struct CustomMapView: UIViewRepresentable {
             return annotation
         }
         uiView.addAnnotations(nearbyAnnotations)
+        */
     }
     
     func makeCoordinator() -> Coordinator {

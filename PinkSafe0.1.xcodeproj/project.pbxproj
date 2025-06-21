@@ -10,9 +10,22 @@
 		637C6A3D2E05DDB200F37912 /* PinkSafe0.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkSafe0.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1ADBF2CF2E0694BC001ED83F /* Exceptions for "PinkSafe0.1" folder in "PinkSafe0.1" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				PinkSafe0.1/Views/Components/CustomMapView.swift,
+			);
+			target = 637C6A3C2E05DDB200F37912 /* PinkSafe0.1 */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		637C6A3F2E05DDB200F37912 /* PinkSafe0.1 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1ADBF2CF2E0694BC001ED83F /* Exceptions for "PinkSafe0.1" folder in "PinkSafe0.1" target */,
+			);
 			path = PinkSafe0.1;
 			sourceTree = "<group>";
 		};

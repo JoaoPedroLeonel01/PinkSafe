@@ -19,7 +19,7 @@ struct PsychologistConsultationView: View {
     @State private var preferredDateTime: Date = Date()
     @State private var showingAlert = false
     
-    let principalColor = Color.purple
+    let principalColor = Color("principal")
     
     var isFormValid: Bool {
         !name.isEmpty && !contactPhone.isEmpty && !email.isEmpty && !reasonForConsultation.isEmpty
@@ -47,12 +47,16 @@ struct PsychologistConsultationView: View {
             .frame(maxWidth: .infinity, alignment: .center)
             .listRowBackground(isFormValid ? principalColor : Color.gray)
             .foregroundColor(.white)
+            
+            Section(header: Text("Minhas Consultas Agendadas")) {
+                ConsultationCalendarView()
+            }
         }
         .navigationTitle("Marque sua consulta")
         .navigationBarTitleDisplayMode(.inline)
         .alert("Solicitação Enviada", isPresented: $showingAlert) {
             Button("OK", role: .cancel) {
-                presentationMode.wrappedValue.dismiss()
+                // Removido: presentationMode.wrappedValue.dismiss()
             }
         } message: {
             Text("Sua solicitação foi enviada com sucesso!")

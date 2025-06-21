@@ -8,6 +8,7 @@ struct MapaView: View {
     @StateObject private var locationSearchService = LocationSearchService()
     
     @State private var selectedCategory: LocationCategory = .todos
+    @State private var showingFilterMenu = false
 
     var body: some View {
         NavigationStack {
@@ -18,7 +19,6 @@ struct MapaView: View {
                 VStack {
                     mapControls
                     Spacer()
-                    filterButtonsView
                     navigationButton
                 }
             }
@@ -30,16 +30,28 @@ struct MapaView: View {
             if locationSearchService.authorizationStatus == .notDetermined {
                 locationSearchService.requestLocationAuthorization()
             }
+            locationSearchService.filterLocations(by: selectedCategory)
         }
     }
     
     private var mapControls: some View {
         HStack {
-            NavigationLink(destination: ScheduledConsultationsView()) {
-                Image(systemName: "calendar.badge.checkmark")
+            Menu {
+                ForEach(LocationCategory.allCases) { category in
+                    Button(action: {
+                        self.selectedCategory = category
+                        locationSearchService.filterLocations(by: category)
+                    }) {
+                        HStack {
+                            Image(systemName: category.icon)
+                            Text(category.rawValue)
+                        }
+                    }
+                }
+            } label: {
+                Image(systemName: "line.horizontal.3.decrease.circle.fill")
             }
             .buttonStyle(MapCircleButtonStyle())
-            .padding(.leading)
             
             Spacer()
             
@@ -47,34 +59,9 @@ struct MapaView: View {
                 Image(systemName: mapType == .standard ? "map" : "map.fill")
             }
             .buttonStyle(MapCircleButtonStyle())
-            .padding(.trailing)
         }
+        .padding(.horizontal, 20)
         .padding(.top, 50)
-    }
-    
-    private var filterButtonsView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                ForEach(LocationCategory.allCases) { category in
-                    Button(action: {
-                        self.selectedCategory = category
-                        locationSearchService.filterLocations(by: category)
-                    }) {
-                        HStack(spacing: 4) {
-                            Image(systemName: category.icon).font(.subheadline)
-                            Text(category.rawValue).font(.caption).fontWeight(.semibold)
-                        }
-                        .padding(.horizontal, 16).padding(.vertical, 10)
-                    }
-                    .background(self.selectedCategory == category ? Color("principal") : Color.white.opacity(0.9))
-                    .foregroundColor(self.selectedCategory == category ? .white : Color("principal"))
-                    .cornerRadius(20)
-                    .shadow(color: .black.opacity(0.15), radius: 3, y: 2)
-                }
-            }
-            .padding(.horizontal)
-            .padding(.bottom, 8)
-        }
     }
     
     private var navigationButton: some View {
@@ -104,10 +91,14 @@ struct MapCircleButtonStyle: ButtonStyle {
         configuration.label
             .font(.title2)
             .foregroundColor(Color("principal"))
-            .padding()
+            .padding(7)
             .background(Color.white.opacity(0.9))
             .clipShape(Circle())
-            .shadow(radius: 2)
+            .shadow(radius: 4)
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
     }
+}
+
+#Preview {
+    MapaView()
 }

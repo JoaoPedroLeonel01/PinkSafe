@@ -1,6 +1,7 @@
 // Models/LocationsData.swift
 import Foundation
 import CoreLocation
+import SwiftUI
 
 // Enum para as categorias de locais.
 enum LocationCategory: String, CaseIterable, Identifiable {
@@ -16,11 +17,22 @@ enum LocationCategory: String, CaseIterable, Identifiable {
     var icon: String {
         switch self {
         case .todos: return "mappin.and.ellipse"
-        case .delegacia: return "building.shield.fill"
+        case .delegacia: return "shield.lefthalf.filled"
         case .ongsApoio: return "heart.fill"
         case .saude: return "cross.case.fill"
         case .academias: return "figure.run"
         case .servicos: return "wrench.and.screwdriver.fill"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .todos: return Color("principal") // Cor principal para a categoria 'Todos'
+        case .delegacia: return .red
+        case .ongsApoio: return .green
+        case .saude: return .blue
+        case .academias: return .orange
+        case .servicos: return .purple
         }
     }
 }

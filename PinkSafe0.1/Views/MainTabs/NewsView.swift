@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+// Removendo SafariServices e SwiftSoup
+// import SafariServices
+// import SwiftSoup
+
+// Restaurando a struct News
 struct News: Identifiable {
     let id = UUID()
     let title: String
@@ -16,10 +21,18 @@ struct News: Identifiable {
     let date: String
 }
 
+// Removendo o import do NewsService
+// import NewsService
+
 struct NewsView: View {
+    // Removendo @StateObject private var newsService = NewsService()
+    // @StateObject private var newsService = NewsService() // Instancia o serviço de notícias
     @State private var selectedCategory = "Todas"
+    
+    // Restaurando as categorias originais
     let categories = ["Todas", "Esportes", "Política", "Cultura", "Saúde", "Carreira"]
     
+    // Restaurando sampleNews
     let sampleNews = [
         News(title: "Marta é eleita melhor jogadora do mundo pela 7ª vez",
              category: "Esportes",
@@ -38,6 +51,7 @@ struct NewsView: View {
         if selectedCategory == "Todas" {
             return sampleNews
         }
+        // Filtragem por categoria original
         return sampleNews.filter { $0.category == selectedCategory }
     }
     
@@ -66,6 +80,7 @@ struct NewsView: View {
                 // Lista de notícias
                 ScrollView {
                     LazyVStack(spacing: 20) {
+                        // Restaurando o ForEach original com sampleNews
                         ForEach(filteredNews) { news in
                             NewsCard(news: news)
                         }
@@ -75,23 +90,34 @@ struct NewsView: View {
             }
             .navigationTitle("Notícias para Mulheres")
             .navigationBarTitleDisplayMode(.large)
+            // Removendo o bloco .onAppear
+            // .onAppear {
+            //    Task {
+            //        do {
+            //            try await newsService.fetchNews()
+            //        } catch {
+            //            print("Erro ao buscar notícias: \(error)")
+            //            // Implementar tratamento de erro para o usuário (ex: alert)
+            //        }
+            //    }
+            // }
         }
     }
 }
 
 struct NewsCard: View {
-    let news: News
+    let news: News // Mudança de article para news
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            // Imagem da notícia (placeholder por enquanto)
+            // Imagem da notícia (placeholder por enquanto) - Restaurando o Rectangle()
             Rectangle()
                 .fill(Color.gray.opacity(0.3))
                 .frame(height: 200)
                 .cornerRadius(10)
             
             VStack(alignment: .leading, spacing: 8) {
-                // Categoria e data
+                // Categoria e data - Restaurando o uso de news.category e news.date
                 HStack {
                     Text(news.category)
                         .font(.caption)
@@ -123,7 +149,19 @@ struct NewsCard: View {
         .background(Color.white)
         .cornerRadius(15)
         .shadow(radius: 5)
+        // Removendo o onTapGesture
+        // .onTapGesture {
+        //    // Abrir a notícia no Safari
+        //    if let url = URL(string: article.url) {
+        //        let safariVC = SFSafariViewController(url: url)
+        //        UIApplication.shared.windows.first?.rootViewController?.present(safariVC, animated: true, completion: nil)
+        //    }
+        // }
     }
+    
+    // Removendo as funções formatDate e removeHtmlTags
+    // private func formatDate(_ dateString: String) -> String { ... }
+    // private func removeHtmlTags(from htmlString: String) -> String { ... }
 }
 
 #Preview {

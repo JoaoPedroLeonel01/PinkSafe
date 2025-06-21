@@ -11,9 +11,10 @@ struct CustomMapView: UIViewRepresentable {
         mapView.mapType = mapType
         mapView.delegate = context.coordinator
         
-        let initialCoordinate = CLLocationCoordinate2D(latitude: -15.7942, longitude: -47.8825)
-        let region = MKCoordinateRegion(center: initialCoordinate, latitudinalMeters: 40000, longitudinalMeters: 40000)
-        mapView.setRegion(region, animated: true)
+        // Removendo a região inicial fixa para que o mapa se ajuste automaticamente às anotações
+        // let initialCoordinate = CLLocationCoordinate2D(latitude: -15.7942, longitude: -47.8825)
+        // let region = MKCoordinateRegion(center: initialCoordinate, latitudinalMeters: 40000, longitudinalMeters: 40000)
+        // mapView.setRegion(region, animated: true)
         
         return mapView
     }
@@ -26,6 +27,11 @@ struct CustomMapView: UIViewRepresentable {
             LocationAnnotation(location: location)
         }
         uiView.addAnnotations(annotations)
+        
+        // Ajustar a região do mapa para mostrar todas as anotações, exceto a localização do usuário
+        if !annotations.isEmpty {
+            uiView.showAnnotations(annotations, animated: true)
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -55,4 +61,4 @@ struct CustomMapView: UIViewRepresentable {
             return view
         }
     }
-}
+} 

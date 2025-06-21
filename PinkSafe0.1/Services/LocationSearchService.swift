@@ -28,6 +28,7 @@ class LocationSearchService: NSObject, ObservableObject, CLLocationManagerDelega
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         loadFixedLocations()
+        print("\(allFixedLocations.count) locais fixos carregados em allFixedLocations.")
         filterLocations(by: .todos)
     }
     
@@ -38,6 +39,7 @@ class LocationSearchService: NSObject, ObservableObject, CLLocationManagerDelega
         } else {
             filteredSupportLocations = allFixedLocations.filter { $0.category == category }
         }
+        print("Filtrando por: \(category.rawValue) - \(filteredSupportLocations.count) locais encontrados.")
     }
     
 

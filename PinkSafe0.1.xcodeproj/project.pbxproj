@@ -6,7 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1A2F94B22E06AD3600857E7D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1A2F94A02E06AD3500857E7D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		1A2F94A22E06AD3500857E7D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		637C6A3D2E05DDB200F37912 /* PinkSafe0.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkSafe0.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -42,10 +57,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A2F949F2E06AD3500857E7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F94A02E06AD3500857E7D /* WidgetKit.framework */,
+				1A2F94A22E06AD3500857E7D /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		637C6A342E05DDB200F37912 = {
 			isa = PBXGroup;
 			children = (
 				637C6A3F2E05DDB200F37912 /* PinkSafe0.1 */,
+				1A2F949F2E06AD3500857E7D /* Frameworks */,
 				637C6A3E2E05DDB200F37912 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,6 +93,7 @@
 				637C6A392E05DDB200F37912 /* Sources */,
 				637C6A3A2E05DDB200F37912 /* Frameworks */,
 				637C6A3B2E05DDB200F37912 /* Resources */,
+				1A2F94B22E06AD3600857E7D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -266,7 +292,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A98HC555P6;
+				DEVELOPMENT_TEAM = 8B7F7G3Y2U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PinkSafe0-1-Info.plist";
@@ -296,7 +322,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A98HC555P6;
+				DEVELOPMENT_TEAM = 8B7F7G3Y2U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PinkSafe0-1-Info.plist";

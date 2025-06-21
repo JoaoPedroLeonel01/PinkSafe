@@ -41,6 +41,9 @@ struct AddContactView: View {
                     .disabled(!isFormValid)
                 }
             }
+            .onTapGesture {
+                self.hideKeyboard()
+            }
         }
     }
 }

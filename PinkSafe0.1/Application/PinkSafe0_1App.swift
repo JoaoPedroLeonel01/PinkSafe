@@ -2,27 +2,25 @@ import SwiftUI
 
 @main
 struct PinkSafe0_1App: App {
-    @Environment(\.openURL) var openURL
-    @State private var showingCallPoliceAlert = false
-    
+    @State private var selectedTab = 0
+    @State private var mostrarTelaDeEmergencia = false
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .onOpenURL { url in
-                    if url.absoluteString == "pinksafe://emergencycall" {
-                        showingCallPoliceAlert = true
+            ZStack {
+                ContentView(selectedTab: $selectedTab)
+                    .sheet(isPresented: $mostrarTelaDeEmergencia) {
+                        EmergencyCallView()
+                    }
+            }
+            .onOpenURL { url in
+                if url.absoluteString == "abrir://emergencia" {
+                    selectedTab = 2 // Muda para a aba do Rastreador
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        mostrarTelaDeEmergencia = true
                     }
                 }
-                .alert("Ligar para a Polícia?", isPresented: $showingCallPoliceAlert) {
-                    Button("Ligar 190", role: .destructive) {
-                        if let url = URL(string: "tel://190") {
-                            openURL(url)
-                        }
-                    }
-                    Button("Cancelar", role: .cancel) { }
-                } message: {
-                    Text("Tem certeza que deseja ligar para a polícia (190)?")
-                }
+            }
         }
     }
 }

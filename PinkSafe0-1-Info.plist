@@ -11,7 +11,7 @@
 			<string>com.yourcompany.PinkSafe0-1</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>pinksafe</string>
+				<string>seumatchapp</string>
 			</array>
 		</dict>
 	</array>

@@ -70,7 +70,7 @@ struct MapaView: View {
                 Image(systemName: "heart.text.square.fill")
                     .font(.title2)
                 
-                Text("Agende sua Consulta Psicológica Gratuita")
+                Text("Agende sua Assistencia Emocinal")
                     .fontWeight(.bold)
                     .font(.callout)
             }

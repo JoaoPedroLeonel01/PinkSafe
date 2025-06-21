@@ -6,6 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		637C6C422E06BC1100F37912 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2F94A02E06AD3500857E7D /* WidgetKit.framework */; };
+		637C6C432E06BC1100F37912 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2F94A22E06AD3500857E7D /* SwiftUI.framework */; };
+		637C6C542E06BC1200F37912 /* EmergencyCallWidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 637C6C412E06BC1100F37912 /* EmergencyCallWidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		637C6C522E06BC1200F37912 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 637C6A352E05DDB200F37912 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 637C6C402E06BC1100F37912;
+			remoteInfo = EmergencyCallWidgetExtensionExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		1A2F94B22E06AD3600857E7D /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -13,6 +29,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				637C6C542E06BC1200F37912 /* EmergencyCallWidgetExtensionExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -23,6 +40,7 @@
 		1A2F94A02E06AD3500857E7D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1A2F94A22E06AD3500857E7D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		637C6A3D2E05DDB200F37912 /* PinkSafe0.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinkSafe0.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		637C6C412E06BC1100F37912 /* EmergencyCallWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EmergencyCallWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -32,6 +50,13 @@
 				PinkSafe0.1/Views/Components/CustomMapView.swift,
 			);
 			target = 637C6A3C2E05DDB200F37912 /* PinkSafe0.1 */;
+		};
+		637C6C582E06BC1200F37912 /* Exceptions for "EmergencyCallWidgetExtension" folder in "EmergencyCallWidgetExtensionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 637C6C402E06BC1100F37912 /* EmergencyCallWidgetExtensionExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -44,6 +69,14 @@
 			path = PinkSafe0.1;
 			sourceTree = "<group>";
 		};
+		637C6C442E06BC1100F37912 /* EmergencyCallWidgetExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				637C6C582E06BC1200F37912 /* Exceptions for "EmergencyCallWidgetExtension" folder in "EmergencyCallWidgetExtensionExtension" target */,
+			);
+			path = EmergencyCallWidgetExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +84,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		637C6C3E2E06BC1100F37912 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				637C6C432E06BC1100F37912 /* SwiftUI.framework in Frameworks */,
+				637C6C422E06BC1100F37912 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				637C6A3F2E05DDB200F37912 /* PinkSafe0.1 */,
+				637C6C442E06BC1100F37912 /* EmergencyCallWidgetExtension */,
 				1A2F949F2E06AD3500857E7D /* Frameworks */,
 				637C6A3E2E05DDB200F37912 /* Products */,
 			);
@@ -79,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				637C6A3D2E05DDB200F37912 /* PinkSafe0.1.app */,
+				637C6C412E06BC1100F37912 /* EmergencyCallWidgetExtensionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +142,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				637C6C532E06BC1200F37912 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				637C6A3F2E05DDB200F37912 /* PinkSafe0.1 */,
@@ -108,6 +153,28 @@
 			productName = PinkSafe0.1;
 			productReference = 637C6A3D2E05DDB200F37912 /* PinkSafe0.1.app */;
 			productType = "com.apple.product-type.application";
+		};
+		637C6C402E06BC1100F37912 /* EmergencyCallWidgetExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 637C6C552E06BC1200F37912 /* Build configuration list for PBXNativeTarget "EmergencyCallWidgetExtensionExtension" */;
+			buildPhases = (
+				637C6C3D2E06BC1100F37912 /* Sources */,
+				637C6C3E2E06BC1100F37912 /* Frameworks */,
+				637C6C3F2E06BC1100F37912 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				637C6C442E06BC1100F37912 /* EmergencyCallWidgetExtension */,
+			);
+			name = EmergencyCallWidgetExtensionExtension;
+			packageProductDependencies = (
+			);
+			productName = EmergencyCallWidgetExtensionExtension;
+			productReference = 637C6C412E06BC1100F37912 /* EmergencyCallWidgetExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -120,6 +187,9 @@
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					637C6A3C2E05DDB200F37912 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					637C6C402E06BC1100F37912 = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
@@ -139,12 +209,20 @@
 			projectRoot = "";
 			targets = (
 				637C6A3C2E05DDB200F37912 /* PinkSafe0.1 */,
+				637C6C402E06BC1100F37912 /* EmergencyCallWidgetExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		637C6A3B2E05DDB200F37912 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		637C6C3F2E06BC1100F37912 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -161,7 +239,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		637C6C3D2E06BC1100F37912 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		637C6C532E06BC1200F37912 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 637C6C402E06BC1100F37912 /* EmergencyCallWidgetExtensionExtension */;
+			targetProxy = 637C6C522E06BC1200F37912 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		637C6A462E05DDB200F37912 /* Debug */ = {
@@ -292,7 +385,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8B7F7G3Y2U;
+				DEVELOPMENT_TEAM = A98HC555P6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PinkSafe0-1-Info.plist";
@@ -322,7 +415,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8B7F7G3Y2U;
+				DEVELOPMENT_TEAM = A98HC555P6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PinkSafe0-1-Info.plist";
@@ -339,6 +432,60 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "empresa.PinkSafe0-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		637C6C562E06BC1200F37912 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A98HC555P6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EmergencyCallWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EmergencyCallWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "empresa.PinkSafe0-1.EmergencyCallWidgetExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		637C6C572E06BC1200F37912 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A98HC555P6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EmergencyCallWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EmergencyCallWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "empresa.PinkSafe0-1.EmergencyCallWidgetExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -362,6 +509,15 @@
 			buildConfigurations = (
 				637C6A492E05DDB200F37912 /* Debug */,
 				637C6A4A2E05DDB200F37912 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		637C6C552E06BC1200F37912 /* Build configuration list for PBXNativeTarget "EmergencyCallWidgetExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				637C6C562E06BC1200F37912 /* Debug */,
+				637C6C572E06BC1200F37912 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

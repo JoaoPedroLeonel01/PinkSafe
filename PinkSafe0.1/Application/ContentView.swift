@@ -20,7 +20,7 @@ struct ContentView: View {
             
             NewsView()
                 .tabItem {
-                    Label("News", systemImage: "newspaper")
+                    Label("Notícias", systemImage: "newspaper")
                 }
             
             PerfilView()

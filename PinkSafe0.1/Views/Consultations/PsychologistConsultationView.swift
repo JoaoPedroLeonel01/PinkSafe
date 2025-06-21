@@ -61,6 +61,9 @@ struct PsychologistConsultationView: View {
         } message: {
             Text("Sua solicitação foi enviada com sucesso!")
         }
+        .onTapGesture {
+            self.hideKeyboard()
+        }
     }
 }
 

@@ -74,9 +74,9 @@ struct MapaView: View {
                     .fontWeight(.bold)
                     .font(.callout)
             }
-            .frame(maxWidth: .infinity)
+            .frame(width: 385)
             .frame(height: 65)
-            .background(LinearGradient(colors: [Color("principal").opacity(0.8), Color("principal")], startPoint: .top, endPoint: .bottom))
+            .background(LinearGradient(colors: [Color("principal"), Color("principal")], startPoint: .top, endPoint: .bottom))
             .foregroundColor(.white)
             .cornerRadius(15)
             .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 3)

@@ -55,6 +55,9 @@ struct AddEmergencyContactView: View {
             } message: {
                 Text("O contato foi adicionado com sucesso!")
             }
+            .onTapGesture {
+                self.hideKeyboard()
+            }
         }
     }
     

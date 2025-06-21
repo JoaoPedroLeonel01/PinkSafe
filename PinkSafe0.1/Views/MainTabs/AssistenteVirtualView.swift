@@ -91,6 +91,9 @@ struct AssistenteVirtualView: View {
             }
             .navigationTitle("Assistente Virtual")
             .navigationBarTitleDisplayMode(.large)
+            .onTapGesture {
+                self.hideKeyboard()
+            }
         }
     }
     

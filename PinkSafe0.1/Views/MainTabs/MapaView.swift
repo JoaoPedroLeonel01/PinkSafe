@@ -7,19 +7,18 @@ struct MapaView: View {
     @StateObject private var viewModel = ConsultationViewModel()
     @StateObject private var locationSearchService = LocationSearchService()
     
+    @State private var selectedCategory: LocationCategory = .todos
+
     var body: some View {
         NavigationStack {
             ZStack {
                 CustomMapView(mapType: $mapType)
-                    .ignoresSafeArea(edges: [.top])
+                    .ignoresSafeArea(edges: .top)
                 
                 VStack {
                     mapControls
-                    
                     Spacer()
-                    
-                    statusAndSearchResults
-                    
+                    filterButtonsView
                     navigationButton
                 }
             }
@@ -30,13 +29,10 @@ struct MapaView: View {
         .onAppear {
             if locationSearchService.authorizationStatus == .notDetermined {
                 locationSearchService.requestLocationAuthorization()
-            } else if locationSearchService.authorizationStatus == .authorizedWhenInUse || locationSearchService.authorizationStatus == .authorizedAlways {
-                locationSearchService.startUpdatingLocation()
             }
         }
     }
     
-    // Subview para os controles do mapa
     private var mapControls: some View {
         HStack {
             NavigationLink(destination: ScheduledConsultationsView()) {
@@ -47,87 +43,71 @@ struct MapaView: View {
             
             Spacer()
             
-            Button(action: {
-                mapType = mapType == .standard ? .hybrid : .standard
-            }) {
+            Button(action: { mapType = mapType == .standard ? .hybrid : .standard }) {
                 Image(systemName: mapType == .standard ? "map" : "map.fill")
             }
             .buttonStyle(MapCircleButtonStyle())
             .padding(.trailing)
         }
-        .padding(.top)
+        .padding(.top, 50)
     }
-
-    // Subview para a barra de status e resultados de busca
-    @ViewBuilder
-    private var statusAndSearchResults: some View {
-        if locationSearchService.authorizationStatus == .notDetermined {
-            Button("Permitir Localização para Achar Apoio Próximo") {
-                locationSearchService.requestLocationAuthorization()
-            }
-            .padding().background(Color.blue).foregroundColor(.white).cornerRadius(10).padding(.bottom)
-        } else if locationSearchService.authorizationStatus == .denied || locationSearchService.authorizationStatus == .restricted {
-            Text("Acesso à localização negado. Habilite nos Ajustes.")
-                .multilineTextAlignment(.center).padding().background(Color.white.opacity(0.8))
-                .cornerRadius(10).foregroundColor(.red).padding(.bottom)
-        } else if !locationSearchService.nearbySupportLocations.isEmpty {
-            // Removendo a exibição dos resultados de busca de localização
-            /*
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(locationSearchService.nearbySupportLocations, id: \.self) {
-                        item in
-                        VStack(alignment: .leading) {
-                            Text(item.name ?? "Lugar Desconhecido").font(.headline)
-                            Text(item.placemark.title ?? "Sem endereço").font(.subheadline)
+    
+    private var filterButtonsView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(LocationCategory.allCases) { category in
+                    Button(action: {
+                        self.selectedCategory = category
+                        locationSearchService.filterLocations(by: category)
+                    }) {
+                        HStack(spacing: 4) {
+                            Image(systemName: category.icon).font(.subheadline)
+                            Text(category.rawValue).font(.caption).fontWeight(.semibold)
                         }
-                        .padding(12).background(Color.white.opacity(0.8)).cornerRadius(8).shadow(radius: 1).padding(.horizontal, 4)
+                        .padding(.horizontal, 16).padding(.vertical, 10)
                     }
+                    .background(self.selectedCategory == category ? Color("principal") : Color.white.opacity(0.9))
+                    .foregroundColor(self.selectedCategory == category ? .white : Color("principal"))
+                    .cornerRadius(20)
+                    .shadow(color: .black.opacity(0.15), radius: 3, y: 2)
                 }
-                .padding(.horizontal)
             }
-            */
+            .padding(.horizontal)
+            .padding(.bottom, 8)
         }
     }
     
-    // Subview para o botão de navegação principal
     private var navigationButton: some View {
         NavigationLink(destination: PsychologistConsultationView()) {
-            HStack {
+            HStack(spacing: 12) {
                 Image(systemName: "heart.text.square.fill")
                     .font(.title2)
+                
                 Text("Agende sua Consulta Psicológica Gratuita")
                     .fontWeight(.bold)
-                    .font(.title3)
+                    .font(.callout)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 18)
-            .background(
-                LinearGradient(colors: [Color.principal.opacity(0.8), Color.principal], startPoint: .top, endPoint: .bottom)
-            )
+            .frame(height: 65)
+            .background(LinearGradient(colors: [Color("principal").opacity(0.8), Color("principal")], startPoint: .top, endPoint: .bottom))
             .foregroundColor(.white)
             .cornerRadius(15)
             .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 3)
         }
         .padding(.horizontal)
-        .padding(.bottom)
+        .padding(.bottom, 10)
     }
 }
 
-// Estilo customizado para os botões do mapa
 struct MapCircleButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.title2)
+            .foregroundColor(Color("principal"))
             .padding()
-            .background(Color.white)
+            .background(Color.white.opacity(0.9))
             .clipShape(Circle())
             .shadow(radius: 2)
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
     }
-}
-
-
-#Preview {
-    MapaView()
 }

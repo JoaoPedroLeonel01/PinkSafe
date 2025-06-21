@@ -13,7 +13,7 @@ struct CustomMapView: UIViewRepresentable {
         mapView.delegate = context.coordinator
         
         let initialCoordinate = CLLocationCoordinate2D(latitude: -15.7942, longitude: -47.8825)
-        let region = MKCoordinateRegion(center: initialCoordinate, latitudinalMeters: 30000, longitudinalMeters: 30000)
+        let region = MKCoordinateRegion(center: initialCoordinate, latitudinalMeters: 40000, longitudinalMeters: 40000)
         mapView.setRegion(region, animated: true)
         
         return mapView
@@ -21,22 +21,12 @@ struct CustomMapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         uiView.mapType = mapType
-        
         uiView.removeAnnotations(uiView.annotations.filter { !($0 is MKUserLocation) })
         
-        uiView.addAnnotations(locationSearchService.fixedSupportLocations)
-        
-        // Removendo a adição de anotações de locais próximos encontrados pela busca
-        /*
-        let nearbyAnnotations = locationSearchService.nearbySupportLocations.map { mapItem -> MKPointAnnotation in
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = mapItem.placemark.coordinate
-            annotation.title = mapItem.name
-            annotation.subtitle = mapItem.placemark.title
-            return annotation
+        let annotations = locationSearchService.filteredSupportLocations.map { location in
+            LocationAnnotation(location: location)
         }
-        uiView.addAnnotations(nearbyAnnotations)
-        */
+        uiView.addAnnotations(annotations)
     }
     
     func makeCoordinator() -> Coordinator {
@@ -46,28 +36,24 @@ struct CustomMapView: UIViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: CustomMapView
         
-        init(_ parent: CustomMapView) {
-            self.parent = parent
-        }
+        init(_ parent: CustomMapView) { self.parent = parent }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            if annotation is MKUserLocation {
-                return nil
-            }
+            guard let locationAnnotation = annotation as? LocationAnnotation else { return nil }
             
             let identifier = "SupportLocation"
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
-
-            if annotationView == nil {
-                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView?.canShowCallout = true
-                annotationView?.markerTintColor = .systemPurple
-                annotationView?.glyphText = "♀️"
-            } else {
-                annotationView?.annotation = annotation
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+            
+            if view == nil {
+                view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             }
-
-            return annotationView
+            
+            view?.canShowCallout = true
+            view?.glyphImage = UIImage(systemName: locationAnnotation.category.icon)
+            // MODIFICADO: Usa a cor "principal" para todos os pinos, conforme solicitado
+            view?.markerTintColor = UIColor(Color("principal"))
+            
+            return view
         }
     }
 }

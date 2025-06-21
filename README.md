@@ -74,7 +74,7 @@ PinkSafe/
 Contribuições são bem-vindas! Para sugerir melhorias, envie um pull request ou abra uma issue com sua ideia ou correção.
 
 PinkSafe — Um app por mulheres, para mulheres.
-Desenvolvido com 💜 por [Seu Nome ou Equipe].
+Desenvolvido com 💜 por Maria Clara, Cauê Carneiro, João Leonel e Mariana.
 ---
 
 
